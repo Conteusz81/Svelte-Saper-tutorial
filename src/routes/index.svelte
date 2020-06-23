@@ -3,7 +3,9 @@
     export async function preload() {
         try {
             const usStats = await request.usStats();
-            return { usStats }
+            const historicUS = await request.historicUS();
+            console.log(historicUS);
+            return { usStats, historicUS }
         } catch (e) {
             this.error(500, 'There was error in calling the api, please try again in 5 minutes.');
         }
@@ -16,7 +18,7 @@
     import TableContainer from "../components/TableContainer.svelte";
 
     export let usStats;
-    console.log("usStats", usStats);
+    export let historicUS;
 </script>
 
 <svelte:head>
