@@ -4,7 +4,6 @@
         try {
             const usStats = await request.usStats();
             const historicUS = await request.historicUS();
-            console.log(historicUS);
             return { usStats, historicUS }
         } catch (e) {
             this.error(500, 'There was error in calling the api, please try again in 5 minutes.');
@@ -32,5 +31,5 @@
 </div>
 
 <CovidStat {...usStats} />
-<CovidChart />
+<CovidChart historicData={historicUS} title="US Covid-19" />
 <TableContainer />
