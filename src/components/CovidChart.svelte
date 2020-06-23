@@ -19,16 +19,6 @@
 
     onDestroy(() => chart && chart.destroy());
 
-    // function handleResize() {
-    //     console.log("XXXXXX", historicData, chartElement);
-    //     if (historicData && document.body.clientWidth > 680) {
-    //         createChart();
-    //         return;
-    //     }
-    //     hideChart = true;
-    // }
-
-
     function createChart() {
         chart = new Chart(chartElement.getContext('2d'), {
             type: 'line',
@@ -37,7 +27,7 @@
             },
             options: {
                 responsive: true,
-                tooltip: {
+                tooltips: {
                     callbacks: {
                         label: function (tooltipItem, data) {
                             let label = data.datasets[tooltipItem.datasetIndex].label;
@@ -83,6 +73,14 @@
         })
     }
 </script>
+
+<style>
+    @media (max-width: 680px) {
+        .container {
+            display: none;
+        }
+    }
+</style>
 
 <!--<svelte:window on:resize={handleResize}/>-->
 

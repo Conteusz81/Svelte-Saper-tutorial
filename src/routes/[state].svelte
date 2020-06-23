@@ -4,14 +4,16 @@
 
     export async function preload(page) {
         const state = page.params['state'].toUpperCase();
+
         if (stateNames.find(s => s.abbreviation === state) === undefined) {
             this.error(404, 'State Not Found');
             return;
         }
-        
+        const fullStateName = stateNames.find(s => s.abbreviation === state).name;
         try {
-            const stats = await request.stateStats(state)
-            return { state, stats }
+            const stats = await request.stateStats(state);
+            const historicState = await request.historicState(state);
+            return { state: fullStateName, stats, historicState }
         } catch (e) {
             this.error(500, 'There was error in calling the api, please try again in 5 minutes.');
         }
@@ -24,6 +26,7 @@
     import TableContainer from "../components/TableContainer.svelte";
     export let state;
     export let stats;
+    export let historicState;
 </script>
 
 <svelte:head>
@@ -37,4 +40,4 @@
 </div>
 
 <CovidStat {...stats}/>
-<CovidChart />
+<CovidChart historicData={historicState} title="Covid 19 - {state}"/>
