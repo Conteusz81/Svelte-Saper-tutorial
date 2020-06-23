@@ -14,6 +14,10 @@ function historicUS(historicData) {
     return parseHistoric(historicData);
 }
 
+function historicState(historicStateData) {
+    return parseHistoric(historicStateData);
+}
+
 function parseHistoric(historicData) {
     return [
         {
@@ -42,7 +46,7 @@ function parseHistoric(historicData) {
             color: 'rgb(255, 99, 132)'
         },
     ].reduce((prev, next) => {
-        if (historicData.filter(d => d[next.key] !== null).length > 4) {
+        if (historicData.filter(d => d[next.key]).length > 4) {
             prev.push(parseChart(historicData, next.key, next.label, next.color))
         }
         return prev;
@@ -77,4 +81,4 @@ function parseStats(rawStats) {
         updated: moment(rawStats.lastModified).format('LLLL')
     }
 }
-export default { usStats, stateStats, historicUS }
+export default { usStats, stateStats, historicUS, historicState }
