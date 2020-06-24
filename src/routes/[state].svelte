@@ -1,15 +1,15 @@
 <script context="module">
-    import stateNames from '../data/stateNames';
     import request from '../data/request';
+    import format from '../data/format'
 
     export async function preload(page) {
         const state = page.params['state'].toUpperCase();
 
-        if (stateNames.find(s => s.abbreviation === state) === undefined) {
+        if (format.stateFullName(state) === undefined) {
             this.error(404, 'State Not Found');
             return;
         }
-        const fullStateName = stateNames.find(s => s.abbreviation === state).name;
+        const fullStateName = format.stateFullName(state).name;
         try {
             const stats = await request.stateStats(state);
             const historicState = await request.historicState(state);

@@ -18,6 +18,10 @@ function historicState(historicStateData) {
     return parseHistoric(historicStateData);
 }
 
+function statesTableData(statesData) {
+    return parseStatsTable(statesData);
+}
+
 function parseHistoric(historicData) {
     return [
         {
@@ -81,4 +85,17 @@ function parseStats(rawStats) {
         updated: moment(rawStats.lastModified).format('LLLL')
     }
 }
-export default { usStats, stateStats, historicUS, historicState }
+
+function parseStatsTable(rawStatesData) {
+    return rawStatesData.map(s => {
+        return {
+            state: s.state,
+            stateName: format.stateFullName(s.state).name,
+            cases: format.number(s.positive),
+            deaths: format.number(s.death),
+            tested: format.number(s.totalTestResults),
+        }
+    });
+}
+
+export default { usStats, stateStats, historicUS, historicState, statesTableData }
