@@ -90,7 +90,7 @@ function parseStatsTable(rawStatesData) {
     return rawStatesData.map(s => {
         return {
             state: s.state,
-            stateName: format.stateFullName(s.state).name,
+            fullStateName: format.stateFullName(s.state).name,
             cases: format.number(s.positive),
             deaths: format.number(s.death),
             tested: format.number(s.totalTestResults),
