@@ -20,7 +20,6 @@
     export let usStats;
     export let historicUS;
     export let statesTable;
-    console.log(statesTable);
 </script>
 
 <svelte:head>
@@ -35,4 +34,4 @@
 
 <CovidStat {...usStats} />
 <CovidChart historicData={historicUS} title="US Covid-19" />
-<TableContainer />
+<TableContainer { statesTable } />
