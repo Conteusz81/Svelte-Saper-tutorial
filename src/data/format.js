@@ -1,3 +1,5 @@
+import stateNames from "./stateNames";
+
 function number(num) {
     if (num === null || num === undefined) {
         return 'unknown';
@@ -6,4 +8,8 @@ function number(num) {
     return num.toLocaleString();
 }
 
-export default {number}
+function stateFullName(stateAbbreviation) {
+   return  stateNames.find(n => n.abbreviation === stateAbbreviation);
+}
+
+export default { number, stateFullName }
