@@ -15,7 +15,7 @@
 
         if (sortBy !== 'fullStateName') {
             return filteredStates.sort((a, b) => {
-                return +(b[sortBy].replace(/\s/g, "")) - +(a[sortBy].replace(/\s/g, ""));
+                return +(b[sortBy].replace(/[\s,]/g, "")) - +(a[sortBy].replace(/[\s,]/g, ""));
             });
         }
         return filteredStates;
