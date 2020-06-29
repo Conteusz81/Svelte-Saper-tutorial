@@ -5,7 +5,7 @@
 #### The data are based on https://covidtracking.com/ API
 
 
-### You can check it out heare:
+### You can check it out here:
 
 https://covid19us-tracker-svelte-sapper-tutorial.netlify.app
 
